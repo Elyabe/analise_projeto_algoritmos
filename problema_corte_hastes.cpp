@@ -23,6 +23,7 @@ int cortar_haste( vector<int> P, int n )
 	return q;
 }
 
+//=====================
 // Função auxiliar : Caso memoizado
 // Calcula e retorna o maior lucro obtido pelo corte de uma haste
 // P : Vetor com preços de cada parte da haste (preço x polegada)
@@ -58,18 +59,85 @@ int cortar_haste_memoizado( vector<int> P, int n )
 	return corte_haste_memoizado_aux( P, n, R );
 }
 
+//=========================
+
+// Calcula e retorna o maior lucro possível num corte de haste
+// P : Vetor com os preços por polegada inteira
+// n : Comprimento da haste
+int cortar_haste_bottomUp( vector<int> P, int n )
+{
+	vector<int> R(n+1, 0);
+	int q, i, j;
+	for ( i = 1; i <= n; i++ )
+	{
+		q = INF_NEG;
+		
+		for ( j = 1; j <= i; j++ )
+			q = max( q, P[j] + R[i-j] );
+
+		R[i] = q;
+	}
+
+	return R[n];
+}
+
+// Calcula e retorna o maior lucro possível num corte de haste e vetor com pontos de corte
+// P : Vetor com os preços por polegada inteira
+// n : Comprimento da haste
+// S : Vetor com configuração final de corte
+int cortar_haste_bottomUp_estendido( vector<int> P, int n, vector<int> &S )
+{
+	vector<int> R(n+1, 0);
+
+	int q, i, j;
+	for ( i = 1; i <= n; i++ )
+	{
+		q = INF_NEG;
+		
+		for ( j = 1; j <= i; j++ )
+		{	
+			if ( q < P[j] + R[i-j] )
+			{
+				q = P[j] + R[i-j];
+				S[i] = j;
+			}
+		}
+
+		R[i] = q;
+	}
+
+	return R[n];
+}
+
+// Exibe pontos de corte resultados da solução do problema
+// P : Vetor com os preços por polegada inteira
+// n : Comprimento da haste
+void imprimir_solucao( vector<int> P, int n )
+{
+	vector<int> S(n+1,0);
+	cout<<"Maior lucro possível (bottomUp_Estendido): "<<cortar_haste_bottomUp_estendido( P, n, S )<<endl;
+	cout<<"Configuração de corte:"<<endl;
+
+	while ( n > 0 )
+	{
+		cout<<S[n]<<" ";
+		n -= S[n]; 
+	}
+}
+
 
 int main()
 {
 	int N, p_i;
 	cin>>N;
 	vector<int> P( N+1, 0 ); 
-
+	
 	for ( int k = 1; k <= N; k++ )
 		cin>>P[k];
 
 	cout<<"Maior lucro possível: "<<cortar_haste( P, N )<<endl;
 	cout<<"Maior lucro possível (Memoizado): "<<cortar_haste_memoizado( P, N )<<endl;
-	
+	cout<<"Maior lucro possível (bottomUp): "<<cortar_haste_bottomUp( P, N )<<endl;
+	imprimir_solucao( P, N );	
 	return 0;
 }

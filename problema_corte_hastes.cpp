@@ -1,3 +1,14 @@
+/* 
+CENTRO UNIVERSTÁRIO NORTE DO ESPÍRITO SANTO - CEUNES/ UFES
+ATIVIDADE COMPLEMENTAR DE ESTRUTURA DE DADOS II
+CURSO: CIÊNCIA DA COMPUTAÇÃO
+
+OBJETIVO: Programação dinâmica : Problema do corte de hastes
+
+CRIADO EM: 
+PROFESSOR: Luciana Lee
+--------------------------------------------------------------------------------*/
+
 #include <bits/stdc++.h>
 
 using namespace std;

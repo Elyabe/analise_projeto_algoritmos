@@ -1,0 +1,22 @@
+3
+5 1
+23 3
+25 0
+
+// Entrada para problema de corte de haste
+N
+p_1 c_1
+.
+.
+.
+p_n c_n
+
+
+6
+5 10 3 12 5 50 6
+
+6
+30 35 15 5 10 20 25
+
+//Entradas para problemas de 
+

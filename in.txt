@@ -1,3 +1,17 @@
+babaca
+babiana
+
+abacate
+abacaxi
+
+jumenta
+juliane
+
+
+// Entrada para problema da subsequência mais longa
+
+X Y Strings com sequencias
+================
 3
 5 1
 23 3
@@ -10,7 +24,7 @@ p_1 c_1
 .
 .
 p_n c_n
-
+==================
 
 6
 5 10 3 12 5 50 6
@@ -18,5 +32,8 @@ p_n c_n
 6
 30 35 15 5 10 20 25
 
-//Entradas para problemas de 
+//Entradas para problemas de parentização de matrizes
+
+N : número de matrizes
+d_0, d_1, d_2, ..., d_n
 

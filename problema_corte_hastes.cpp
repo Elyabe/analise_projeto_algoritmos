@@ -96,7 +96,7 @@ int cortar_haste_bottomUp( vector<int> P, int n )
 // P : Vetor com os preços por polegada inteira
 // n : Comprimento da haste
 // S : Vetor com configuração final de corte
-int cortar_haste_bottomUp_estendido( vector<int> P, int n, vector<int> &S )
+int cortar_haste_bottomUp_estendido( vector<int> P, vector<int> C, int n, vector<int> &S )
 {
 	vector<int> R(n+1, 0);
 
@@ -107,9 +107,9 @@ int cortar_haste_bottomUp_estendido( vector<int> P, int n, vector<int> &S )
 		
 		for ( j = 1; j <= i; j++ )
 		{	
-			if ( q < P[j] + R[i-j] )
+			if ( q < P[j] - C[j] + R[i-j]  )
 			{
-				q = P[j] + R[i-j];
+				q = P[j] - C[j] + R[i-j];
 				S[i] = j;
 			}
 		}
@@ -123,10 +123,10 @@ int cortar_haste_bottomUp_estendido( vector<int> P, int n, vector<int> &S )
 // Exibe pontos de corte resultados da solução do problema
 // P : Vetor com os preços por polegada inteira
 // n : Comprimento da haste
-void imprimir_solucao( vector<int> P, int n )
+void imprimir_solucao( vector<int> P, vector<int> C, int n )
 {
 	vector<int> S(n+1,0);
-	cout<<"Maior lucro possível (bottomUp_Estendido): "<<cortar_haste_bottomUp_estendido( P, n, S )<<endl;
+	cout<<"Maior lucro possível (bottomUp_Estendido): "<<cortar_haste_bottomUp_estendido( P, C, n, S )<<endl;
 	cout<<"Configuração de corte:"<<endl;
 
 	while ( n > 0 )
@@ -141,14 +141,14 @@ int main()
 {
 	int N, p_i;
 	cin>>N;
-	vector<int> P( N+1, 0 ); 
+	vector<int> P( N+1, 0 ), C( N+1, 0 ); 
 	
 	for ( int k = 1; k <= N; k++ )
-		cin>>P[k];
+		cin>>P[k]>>C[k];
 
 	cout<<"Maior lucro possível: "<<cortar_haste( P, N )<<endl;
 	cout<<"Maior lucro possível (Memoizado): "<<cortar_haste_memoizado( P, N )<<endl;
 	cout<<"Maior lucro possível (bottomUp): "<<cortar_haste_bottomUp( P, N )<<endl;
-	imprimir_solucao( P, N );	
+	imprimir_solucao( P, C, N );	
 	return 0;
 }

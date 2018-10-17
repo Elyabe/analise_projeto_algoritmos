@@ -1,7 +1,13 @@
 /* 
-Author: Elyabe Alves
-G
-*/
+CENTRO UNIVERSTÁRIO NORTE DO ESPÍRITO SANTO - CEUNES/ UFES
+ATIVIDADE COMPLEMENTAR DE ANÁLISE E PROJETO DE ALGORITMOS
+CURSO: CIÊNCIA DA COMPUTAÇÃO
+
+OBJETIVO: Percurso em grafos 
+
+CRIADO EM: 
+PROFESSOR: Luciana Lee
+--------------------------------------------------------------------------------*/
 
 #include <bits/stdc++.h>
 
